@@ -391,7 +391,7 @@ public class ImportExecl {
 		ImportExecl poi = new ImportExecl();
 
 		// List<List<String>> list = poi.read("d:/aaa.xls");
-		List<List<String>> list = poi.read("D:/as.xls");
+		List<List<String>> list = poi.read("D:/live/player.xls");
 		Integer numAll=0;
 		if (list != null) {
 
@@ -400,40 +400,20 @@ public class ImportExecl {
 				System.out.print("第" + (i) + "行");
 
 				List<String> cellList = list.get(i);
-				String author=null;
-				int ctype=0;
 				for (int j = 0; j < cellList.size(); j++) {
-					if(j==0){
-						author=cellList.get(j);
-					}else{
-						String a=cellList.get(j);
-						Integer num=AuthorDAO.isNewUserByPhone(a.trim());
-						System.out.print("         "+a.trim()+"    "+num);
-						if(num!=0){
-							numAll++;
+						String playId=cellList.get(j);
+						if(!"".equals(playId)){
+							int c=playId.indexOf(".");
+							String playerId=playId.substring(0,c);
+							System.out.print("   "+playerId);
+							AuthorDAO.insertAppPlayer(playerId);
 						}
-//						int c=a.indexOf(".");
-//						ctype=Integer.parseInt(a.substring(0,c));
 					}
-//					String a=cellList.get(j);
-//					if(a.contains(".")){
-//						a="用户ID:"+a.substring(0,a.indexOf("."));
-//					}
-//					System.out.print("	" + a);
-
-				}
-				
-//				List<Comment>comments=AuthorDAO.findAllComment(ctype,"2017-01-16 00:00","2017-01-23 00:00");
-				
-//				System.out.println("      用户评论数:"+comments.size());
-//				AuthorDAO.createExcelByUserId(ctype,"2017-01-16","2017-01-23",String.valueOf(ctype));
-//				AuthorDAO.insertAuthor(author, ctype);
 				System.out.println();
+				}
 			}
-			System.out.println(numAll);
 		}
 
-	}
 
 }
 

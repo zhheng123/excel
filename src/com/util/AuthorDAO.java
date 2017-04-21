@@ -46,6 +46,23 @@ public class AuthorDAO {
 			DBUtil.close(conn);
 		}
 	}
+	//插入后台APP登录的时候，随机选择的球员头像
+	public static void  insertAppPlayer(String playerId) throws Exception{
+		Connection conn = null;
+		PreparedStatement prep = null;
+		try {
+			conn = DBUtil.getConnection();
+			prep = conn.prepareStatement(
+					"insert into _app_player(_player_url) values(?)");
+			prep.setString(1, playerId);
+			prep.execute();
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}finally{
+			DBUtil.close(conn);
+		}
+	}
 	
 	//生成每个作者的评论excel表
 	public static void createExcelByUserId(int userID,String startTime,String endTime,String author){
