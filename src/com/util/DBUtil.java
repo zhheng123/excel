@@ -17,7 +17,7 @@ public class DBUtil {
 					"jdbc:mysql://localhost:3306/python?useUnicode=true&characterEncoding=UTF-8",
 					"root","");*/
 			conn = DriverManager.getConnection(
-					"jdbc:mysql://rdsygsz4v35hgmvqifqxt.mysql.rds.aliyuncs.com:3306/sodasoccer_app?useUnicode=true&characterEncoding=UTF-8",
+					"jdbc:mysql://?useUnicode=true&characterEncoding=UTF-8",
 					"sodasoccer","123456789");
 		} catch (Exception e) {
 			e.printStackTrace();
